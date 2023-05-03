@@ -1,0 +1,24 @@
+Project 2 Documentation
+
+What is the intended purpose of the application?
+-It's going to be an educational application for Japanese Vocabulary learning by having a word search, flashcards for practice and the ability to make your own flashcard games.
+
+What work has been completed for this milestone?
+-Not much, the api for Jisho which is a free online dictionary for Japanese is working and I setup the project to commence working on it shortly.
+
+What work is left, and how do you plan to complete it?
+-Make the proper api calls and parse out the information that I need, make the models for the components of my app such as the flashcards, word lists, words and add the premium model.
+
+How are you using React?
+-Since we are using some of the things from Domomaker, I'm going to be using the login component for sure. I'm going to want to add a flashcard component for the game part of the app, a search component and the word list component.
+
+What data are you storing in MongoDB?
+-Users, passwords, wordlists(made by the user), maybe recent searches.
+
+What is your profit model?
+-I'm planning on implementing a premium mode that allows the user to play the flashcard game with Kanji characters. In Japanese, there are 3 writing systems, basic users will be able to play the game using only 2 of them, Hiragana and Katakana and because I don't want to keep the basic users from learning, they can use the Kanji flashcard games but they would have to watch an ad everytime they complete a flashcard. Premium users get no ads on the Kanji game.
+
+Do you have a plan for going above and beyond? If so, what is it?
+-As of right now I have no idea, maybe next week I can come up with something better. Imagine RIT being around the corner has me extremely anxious.
+
+Endpoint Documentation
