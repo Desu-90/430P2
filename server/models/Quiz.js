@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const _ = require('underscore');
 
 const setName = (name) => _.escape(name).trim();
-
 const QuizSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -10,27 +9,26 @@ const QuizSchema = new mongoose.Schema({
     trim: true,
     set: setName,
   },
-
-  id: {
-    type: Number,
-    required: true,
+  public: {
+    type: Boolean,
+    default: false,
   },
-
+  cards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Card',
+    },
+  ],
   createdDate: {
     type: Date,
     default: Date.now,
   },
-
-  public: {
-    bool: true,
-  },
 });
 
 QuizSchema.statics.toAPI = (doc) => ({
-    quizName: doc.quizName,
-    id: doc.id,
-    words: doc.words,
+  title: doc.title,
+  public: doc.public,
+  cards: doc.cards,
 });
-
 const QuizModel = mongoose.model('Quiz', QuizSchema);
 module.exports = QuizModel;

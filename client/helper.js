@@ -1,6 +1,6 @@
 const handleError = (message) => {
   document.getElementById('errorMessage').textContent = message;
-  document.getElementById('errorMessageCont').classList.remove('hidden');
+  document.getElementById('errorContainer').classList.remove('hidden');
 };
 
 const sendPost = async (url, data, handler) => {
@@ -13,7 +13,7 @@ const sendPost = async (url, data, handler) => {
   });
 
   const result = await response.json();
-  document.getElementById('jishoMessage').classList.add('hidden');
+  document.getElementById('errorContainer').classList.add('hidden');
 
   if (result.redirect) {
     window.location = result.redirect;
@@ -26,15 +26,30 @@ const sendPost = async (url, data, handler) => {
   if (handler) {
     handler(result);
   }
-  return result;
 };
 
+const sendPut = (url, data) => fetch(url, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify(data),
+}).then((response) => {
+  if (response.status === 200 || response.status === 204) {
+    return response.json();
+  }
+  throw new Error('Server error');
+}).catch((error) => {
+  console.error(error);
+});
+
 const hideError = () => {
-  document.getElementById('jishoMessage').classList.add('hidden');
+  document.getElementById('errorContainer').classList.add('hidden');
 };
 
 module.exports = {
   handleError,
   sendPost,
   hideError,
+  sendPut,
 };

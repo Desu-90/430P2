@@ -1,3 +1,3 @@
 module.exports.Account = require('./Account.js');
-module.exports.Flash = require('./Flash.js');
+module.exports.Card = require('./Card.js');
 module.exports.Quiz = require('./Quiz.js');

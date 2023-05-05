@@ -1,28 +1,31 @@
 <html lang="en">
+
 <head>
-  <meta charset="utf-8"/>
-  <title>Jisho Flashcard Maker </title>
-  <link rel="shortcut icon" href="/assets/img/favicon.png"/>
-  <link rel="stylesheet" type="text/css" href="/assets/style.css"/>
+    <meta charset="utf-8">
+    <title>Jisho Quizlet</title>
+    <link rel="stylesheet" type="text/css" href="/assets/style.css">
 </head>
+
 <body>
-  <nav><a href="/login"><img id="logo" src="/assets/img/face.png" alt="face logo"/></a>
-    <div class="navlink"><a href="/logout">Log out</a></div>
+    <nav>
+        <div class="navlink"><a href="/logout">Log out</a></div>
+        <div class="navlink"><a id='account' href="/maker">Change Password</a></div>
+        <div class="navlink"><a id='maker' href="/maker">Make Flash Cards!</a></div>
+        <div class="navlink"><a id="quiz" href="/quiz">Test Yourself!</a></div>
 
-  </nav>
+    </nav>
+    <div id="content">
+        <section id="makeCard">
 
-  <section id="makeFlash">
+        </section>
+        <section id="cards">
 
-  </section>
-  <section id="flash">
-    
-  </section>
-
-  <div id="errorMessage" class='hidden'>
-    <img id="speech" src="/assets/img/speech.png" alt="speech box"/>
-    <h3><span id="errorMessage"></span></h3>
-    <img id="filler" src="assets/img/filler.png" alt="filler"/>
-  </div>
-  <script src="/assets/appBundle.js"></script>
+        </section>
+    </div>
+    <div id="errorContainer" class="hidden">
+        <h3><span id="errorMessage"></span></h3>
+    </div>
+    <script src="/assets/appBundle.js"></script>
 </body>
+
 </html>

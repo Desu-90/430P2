@@ -55,9 +55,32 @@ const signup = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  const { oldPassword, newPassword } = req.body;
+
+  if (!oldPassword || !newPassword) {
+    return res.status(400).json({ error: 'All fields are required!' });
+  }
+
+  try {
+    const account = await Account.authenticate(req.session.account.username, oldPassword);
+    if (!account) {
+      return res.status(401).json({ error: 'Wrong password!' });
+    }
+    account.password = await Account.generateHash(newPassword);
+    await account.save();
+    return res.json({ message: 'Password changed successfully!' });
+  } catch (err) {
+    console.log(err);
+    console.log('dummy');
+    return res.status(400).json({ error: 'An error occurred' });
+  }
+};
+
 module.exports = {
   loginPage,
   login,
   logout,
   signup,
+  changePassword,
 };

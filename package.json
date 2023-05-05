@@ -1,7 +1,7 @@
 {
-  "name": "domomaker",
+  "name": "Project 2 Jisho Quizlet",
   "version": "1.0.0",
-  "description": "A Simple Login Example using Node.js, Mongo and Redis",
+  "description": "Make your own flashcards and test your memory, good for reinforcing vocabulary",
   "main": "./server/app.js",
   "scripts": {
     "webpack": "webpack",
