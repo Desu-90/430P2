@@ -16,11 +16,11 @@ const router = (app) => {
   // app.put('/changepassword', mid.requiresSecure, mid.requiresLogin, controllers.Account.changePassword);
   app.delete('/delete', mid.requiresLogin, controllers.Card.deleteCard);
 
-  app.post('/quiz', mid.requiresLogin, controllers.Quiz.makeQuiz);
-  app.get('/quiz', mid.requiresLogin, controllers.Quiz.getQuizzes);
-  app.get('/quiz', mid.requiresLogin, controllers.Quiz.getQuizById);
-  app.post('/quiz', mid.requiresLogin, controllers.Quiz.addCardToQuiz);
-  app.post('/quiz', mid.requiresLogin, controllers.Quiz.removeCardFromQuiz);
+  // app.post('/quiz', mid.requiresLogin, controllers.Quiz.makeQuiz);
+  // app.get('/quiz', mid.requiresLogin, controllers.Quiz.getQuizzes);
+  // app.get('/quiz', mid.requiresLogin, controllers.Quiz.getQuizById);
+  // app.post('/quiz', mid.requiresLogin, controllers.Quiz.addCardToQuiz);
+  // app.post('/quiz', mid.requiresLogin, controllers.Quiz.removeCardFromQuiz);
 };
 
 module.exports = router;
