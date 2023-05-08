@@ -19,6 +19,11 @@ const QuizSchema = new mongoose.Schema({
       ref: 'Card',
     },
   ],
+  owner: {
+    type: mongoose.Schema.ObjectId,
+    required: true,
+    ref: 'Account',
+  },
   createdDate: {
     type: Date,
     default: Date.now,

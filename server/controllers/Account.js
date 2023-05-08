@@ -1,4 +1,7 @@
+const bcrypt = require('bcrypt');
 const models = require('../models');
+
+const AccountModel = {};
 
 const { Account } = models;
 
@@ -55,32 +58,41 @@ const signup = async (req, res) => {
   }
 };
 
-// const changePassword = async (req, res) => {
-//   const { oldPassword, newPassword } = req.body;
+const changePassword = async (req, res) => {
+  const oldPassword = `${req.body.currentPassword}`;
+  const pass = `${req.body.pass}`;
+  const pass2 = `${req.body.pass2}`;
 
-//   if (!oldPassword || !newPassword) {
-//     return res.status(400).json({ error: 'All fields are required!' });
-//   }
+  if (!oldPassword || !pass || !pass2) {
+    return res.status(400).json({ error: 'All fields are required!' });
+  }
 
-//   try {
-//     const account = await Account.authenticate(req.session.account.username, oldPassword);
-//     if (!account) {
-//       return res.status(401).json({ error: 'Wrong password!' });
-//     }
-//     account.password = await Account.generateHash(newPassword);
-//     await account.save();
-//     return res.json({ message: 'Password changed successfully!' });
-//   } catch (err) {
-//     console.log(err);
-//     console.log('dummy');
-//     return res.status(400).json({ error: 'An error occurred' });
-//   }
-// };
+  if (pass !== pass2) {
+    return res.status(400).json({ error: 'Passwords do not match!' });
+  }
+
+  try {
+    const account = await AccountModel.findOne({ _id: req.session.account._id }).exec();
+    const match = await bcrypt.compare(oldPassword, account.password);
+    if (!match) {
+      return res.status(401).json({ error: 'Wrong password!' });
+    }
+
+    const newHash = await bcrypt.hash(pass, 10);
+    await AccountModel.updateOne({ _id: account._id }, { $set: { password: newHash } });
+
+    req.session.account.password = newHash;
+    return res.json({ message: 'Password changed successfully!' });
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({ error: 'An error occurred' });
+  }
+};
 
 module.exports = {
   loginPage,
   login,
   logout,
   signup,
-  // changePassword,
+  changePassword,
 };

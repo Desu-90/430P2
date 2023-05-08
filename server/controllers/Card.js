@@ -40,17 +40,6 @@ const getCards = async (req, res) => {
   }
 };
 
-// const deleteCard = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     await Card.findByIdAndDelete(id);
-//     return res.status(204).json();
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(500).json({ error: 'An error occurred deleting the card!' });
-//   }
-// };
-
 const deleteCard = async (req, res) => {
   try {
     const deletedCard = await Card.findByIdAndDelete(req.query.id);
